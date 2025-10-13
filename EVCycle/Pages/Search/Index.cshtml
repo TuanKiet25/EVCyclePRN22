@@ -1,0 +1,89 @@
+﻿@page
+@model EVCycle.Pages.Search.IndexModel
+@{
+    ViewData["Title"] = "Tìm kiếm Xe/Pin Cũ";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card shadow-sm p-3 mb-4">
+            <h5 class="text-secondary mb-3">Bộ lọc Chi tiết</h5>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Hãng xe</label>
+                    <select class="form-select">
+                        <option selected>Tất cả</option>
+                        <option>VinFast</option>
+                        <option>Tesla</option>
+                        </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Khoảng Giá (Triệu VNĐ)</label>
+                    <input type="range" class="form-range" min="100" max="2000" step="50" id="priceRange">
+                    <div class="d-flex justify-content-between small"><span>100M</span><span>2000M+</span></div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Dung lượng Pin (kWh)</label>
+                    <input type="number" class="form-control" placeholder="Tối thiểu">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Năm sản xuất</label>
+                    <select class="form-select">
+                        <option selected>Mới nhất</option>
+                        <option>2024</option>
+                        <option>2023</option>
+                        </select>
+                </div>
+                <button type="submit" class="btn btn-primary-custom w-100 mt-2">Áp dụng Lọc</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        <h5 class="mb-3 text-secondary">Tìm thấy 15 kết quả</h5>
+        
+        @for (int i = 1; i <= 5; i++)
+        {
+            <div class="card mb-3 shadow-sm border-0">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="https://via.placeholder.com/300x200?text=Xe+Dien" class="img-fluid rounded-start" alt="Hình ảnh xe">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title text-primary">VinFast VF e34 (2022) - @(750 - i*10) Triệu VNĐ</h5>
+                                <button class="btn btn-outline-danger btn-sm" title="Thêm vào Yêu thích">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <p class="card-text small text-secondary">
+                                <span class="me-3">KM: 20,000 km</span>
+                                <span class="me-3">Pin: 42 kWh</span>
+                                <span>Tình trạng: Tuyệt vời</span>
+                            </p>
+                            <p class="card-text">Mô tả tóm tắt về chiếc xe... Đây là một cơ hội tốt để sở hữu xe điện!</p>
+                            <div class="d-flex justify-content-end">
+                                <a href="#" class="btn btn-sm btn-outline-info me-2" title="Thêm vào So sánh"><i class="fas fa-balance-scale"></i> So sánh</a>
+                                <a asp-page="./Detail" asp-route-id="@i" class="btn btn-sm btn-primary-custom">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled"><a class="page-link" href="#">Trước</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Sau</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</div>

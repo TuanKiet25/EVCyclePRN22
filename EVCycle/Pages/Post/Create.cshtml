@@ -1,0 +1,91 @@
+﻿@page
+@model EVCycle.Pages.Post.CreateModel
+@{
+    ViewData["Title"] = "Đăng tin Bán Xe/Pin Cũ";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="card shadow-sm border-0 p-4">
+    <form method="post" enctype="multipart/form-data">
+        <h4 class="text-secondary mb-3">Thông tin Cơ bản</h4>
+        <div class="row g-3">
+            
+            <div class="col-md-6">
+                <label for="productType" class="form-label">Loại Sản phẩm</label>
+                <select id="productType" class="form-select">
+                    <option selected>Chọn loại...</option>
+                    <option value="1">Xe Điện</option>
+                    <option value="2">Pin Xe Điện</option>
+                </select>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="brand" class="form-label">Hãng sản xuất</label>
+                <input type="text" class="form-control" id="brand" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="model" class="form-label">Dòng xe/Pin</label>
+                <input type="text" class="form-control" id="model" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="year" class="form-label">Năm sản xuất</label>
+                <input type="number" class="form-control" id="year" min="2000" max="@DateTime.Now.Year" required>
+            </div>
+
+            <div class="col-12">
+                <label for="title" class="form-label">Tiêu đề Tin đăng</label>
+                <input type="text" class="form-control" id="title" placeholder="Ví dụ: Bán VinFast VF e34, Lướt 20k km, Pin thuê" required>
+            </div>
+            
+            <div class="col-12">
+                <label for="description" class="form-label">Mô tả chi tiết</label>
+                <textarea class="form-control" id="description" rows="4" placeholder="Mô tả chi tiết về tình trạng, lịch sử bảo dưỡng, v.v." required></textarea>
+            </div>
+        </div>
+
+        <h4 class="text-secondary my-4">Thông số Kỹ thuật & Giá</h4>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="odometer" class="form-label">Số KM đã đi (Nếu là Xe)</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="odometer" required>
+                    <span class="input-group-text">km</span>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="batteryCapacity" class="form-label">Dung lượng Pin</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="batteryCapacity" required>
+                    <span class="input-group-text">kWh</span>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="price" class="form-label">Giá bán đề xuất</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" id="price" required>
+                    <span class="input-group-text">VNĐ</span>
+                </div>
+            </div>
+        </div>
+        
+        <h4 class="text-secondary my-4">Hình ảnh Sản phẩm</h4>
+        <div class="mb-3">
+            <label for="images" class="form-label">Tải lên Hình ảnh (Tối đa 5 ảnh)</label>
+            <input class="form-control" type="file" id="images" multiple accept="image/*" required>
+        </div>
+
+        <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="" id="acceptTerms" required>
+            <label class="form-check-label" for="acceptTerms">
+                Tôi xác nhận các thông tin trên là chính xác và đồng ý với Điều khoản dịch vụ.
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-primary-custom w-100">ĐĂNG TIN</button>
+    </form>
+</div>

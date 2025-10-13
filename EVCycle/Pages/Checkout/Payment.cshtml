@@ -1,0 +1,42 @@
+﻿@page
+@model EVCycle.Pages.Checkout.PaymentModel
+@{
+    ViewData["Title"] = "Xác nhận Thanh toán";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-primary-custom text-white text-center">
+                <h4 class="mb-0">Thanh toán Giao dịch</h4>
+            </div>
+            <div class="card-body p-4">
+                <h5 class="text-secondary mb-3">Thông tin Đơn hàng (GD007)</h5>
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Sản phẩm:</span>
+                        <strong>Xe/Pin Cũ</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Số tiền cần thanh toán:</span>
+                        <strong class="text-danger">750,000,000 VNĐ</strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Phí giao dịch:</span>
+                        <span>0 VNĐ</span>
+                    </li>
+                </ul>
+
+                <h5 class="text-secondary mb-3">Chọn Phương thức</h5>
+                <div class="d-grid gap-3">
+                    <button class="btn btn-outline-primary py-3">
+                        <i class="fas fa-wallet me-2"></i> Thanh toán qua **e-wallet**
+                    </button>
+                    <button class="btn btn-outline-primary py-3">
+                        <i class="fas fa-university me-2"></i> Chuyển khoản **Ngân hàng**
+                    </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

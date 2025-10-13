@@ -1,0 +1,33 @@
+﻿@page
+@model EVCycle.Pages.Transaction.RateModel
+@{
+    ViewData["Title"] = "Đánh giá Giao dịch GD005";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="card shadow-sm border-0 p-4">
+    <h4 class="text-secondary mb-4">Đánh giá Người Bán: Công ty Bán Xe X (Mã GD: GD005)</h4>
+    <form method="post">
+
+        <div class="mb-4">
+            <label class="form-label fw-bold">Chất lượng Dịch vụ</label>
+            <div class="d-flex align-items-center">
+                <i class="far fa-star fa-2x text-warning me-2" style="cursor: pointer;"></i>
+                <i class="far fa-star fa-2x text-warning me-2" style="cursor: pointer;"></i>
+                <i class="far fa-star fa-2x text-warning me-2" style="cursor: pointer;"></i>
+                <i class="far fa-star fa-2x text-warning me-2" style="cursor: pointer;"></i>
+                <i class="far fa-star fa-2x text-warning" style="cursor: pointer;"></i>
+                <span class="ms-3 text-secondary" id="ratingText">(Chưa chọn)</span>
+            </div>
+            <input type="hidden" id="starRating" name="Rating" value="0">
+        </div>
+
+        <div class="mb-4">
+            <label for="feedback" class="form-label fw-bold">Phản hồi chi tiết (Tùy chọn)</label>
+            <textarea class="form-control" id="feedback" name="Feedback" rows="4" placeholder="Chia sẻ kinh nghiệm của bạn về giao dịch này..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-primary-custom">Gửi Đánh giá</button>
+    </form>
+</div>

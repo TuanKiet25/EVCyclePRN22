@@ -1,0 +1,113 @@
+﻿@page
+@model EVCycle.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard Quản trị Hệ thống";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="row g-4">
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-primary-custom text-white shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="small">Hoa hồng Tháng này</div>
+                        <h3 class="mb-0">1.2 Tỷ VNĐ</h3>
+                    </div>
+                    <i class="fas fa-dollar-sign fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-success text-white shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="small">Giao dịch Thành công</div>
+                        <h3 class="mb-0">45</h3>
+                    </div>
+                    <i class="fas fa-check-circle fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-warning text-dark shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="small">Thành viên Mới</div>
+                        <h3 class="mb-0">120</h3>
+                    </div>
+                    <i class="fas fa-user-plus fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card bg-info text-white shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="small">Tin chờ Duyệt</div>
+                        <h3 class="mb-0">8</h3>
+                    </div>
+                    <i class="fas fa-clock fa-2x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card shadow-sm p-4">
+            <h5 class="text-secondary mb-3">Xu hướng Thị trường (12 tháng)</h5>
+            <canvas id="marketChart" height="400"></canvas>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card shadow-sm p-4">
+            <h5 class="text-secondary mb-3">Báo cáo Nhanh</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between">Quản lý người dùng: <a asp-page="./Users">Xem</a></li>
+                <li class="list-group-item d-flex justify-content-between">Quản lý tin đăng: <a asp-page="./Posts">Xem</a></li>
+                <li class="list-group-item d-flex justify-content-between">Quản lý phí & HH: <a asp-page="./Fees">Xem</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <script>
+        // Mã JavaScript để vẽ biểu đồ (Sử dụng Chart.js)
+        const ctx = document.getElementById('marketChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+                datasets: [{
+                    label: 'Doanh số Bán xe (Đơn vị)',
+                    data: [12, 19, 3, 5, 2, 3, 7, 10, 15, 20, 18, 25],
+                    borderColor: '#007bff',
+                    backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}

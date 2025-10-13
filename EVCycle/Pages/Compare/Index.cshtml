@@ -1,0 +1,66 @@
+﻿@page
+@model EVCycle.Pages.Compare.IndexModel
+@{
+    ViewData["Title"] = "So sánh Xe/Pin";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="card shadow-sm border-0 p-4">
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+            <thead class="bg-primary-custom text-white">
+                <tr>
+                    <th style="width: 20%;">Thông số</th>
+                    <th style="width: 40%;">Xe A (VF e34 - 2022)</th>
+                    <th style="width: 40%;">Xe B (Kona EV - 2020)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-secondary">
+                    <td colspan="3" class="fw-bold">Thông tin Cơ bản</td>
+                </tr>
+                <tr>
+                    <td>Giá bán</td>
+                    <td class="text-success fw-bold">750,000,000 VNĐ</td>
+                    <td class="text-success fw-bold">680,000,000 VNĐ</td>
+                </tr>
+                <tr>
+                    <td>Năm sản xuất</td>
+                    <td>2022</td>
+                    <td>2020</td>
+                </tr>
+                <tr>
+                    <td>Tình trạng</td>
+                    <td>Tuyệt vời</td>
+                    <td>Tốt</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td colspan="3" class="fw-bold">Thông số Pin & Động cơ</td>
+                </tr>
+                <tr>
+                    <td>Dung lượng Pin</td>
+                    <td>42 kWh</td>
+                    <td>39.2 kWh</td>
+                </tr>
+                <tr>
+                    <td>Số KM đã đi</td>
+                    <td>20,000 km</td>
+                    <td>45,000 km</td>
+                </tr>
+                <tr>
+                    <td>Phạm vi (WLTP)</td>
+                    <td>285 km</td>
+                    <td>305 km</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td><a href="#" class="btn btn-primary-custom w-100">Liên hệ Mua</a></td>
+                    <td><a href="#" class="btn btn-primary-custom w-100">Liên hệ Mua</a></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

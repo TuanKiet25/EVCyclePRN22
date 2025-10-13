@@ -1,0 +1,120 @@
+﻿@page
+@model EVCycle.Pages.Member.ProfileModel
+@{
+    ViewData["Title"] = "Quản lý Hồ sơ & Lịch sử Giao dịch";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="list-group" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active" id="list-info-list" data-bs-toggle="list" href="#list-info" role="tab">Thông tin Cá nhân</a>
+            <a class="list-group-item list-group-item-action" id="list-vehicle-list" data-bs-toggle="list" href="#list-vehicle" role="tab">Xe/Pin đã đăng</a>
+            <a class="list-group-item list-group-item-action" id="list-history-list" data-bs-toggle="list" href="#list-history" role="tab">Lịch sử Giao dịch</a>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="tab-content" id="nav-tabContent">
+
+            <div class="tab-pane fade show active" id="list-info" role="tabpanel">
+                <h4 class="mb-3 text-secondary">Thông tin Cá nhân</h4>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Họ và Tên</label>
+                        <input type="text" class="form-control" id="fullName" value="Nguyễn Văn A">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" id="phone" value="0901234567">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa chỉ</label>
+                        <input type="text" class="form-control" id="address" value="Số 1, đường ABC, Hà Nội">
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom">Cập nhật</button>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="list-vehicle" role="tabpanel">
+                <h4 class="mb-3 text-secondary">Danh sách Xe/Pin của bạn</h4>
+                <a asp-page="/Post/Create" class="btn btn-success mb-3">Đăng tin mới</a>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Mã tin</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá bán</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#001</td>
+                                <td>VinFast VF e34 (2022)</td>
+                                <td>700,000,000 VNĐ</td>
+                                <td><span class="badge bg-success">Đang bán</span></td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary me-2">Sửa</a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#002</td>
+                                <td>Pin Lithium 42 kWh</td>
+                                <td>150,000,000 VNĐ</td>
+                                <td><span class="badge bg-warning text-dark">Chờ duyệt</span></td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary me-2">Xem</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="list-history" role="tabpanel">
+                <h4 class="mb-3 text-secondary">Lịch sử Giao dịch đã hoàn thành</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Mã GD</th>
+                                <th>Sản phẩm</th>
+                                <th>Vai trò</th>
+                                <th>Tổng tiền</th>
+                                <th>Ngày GD</th>
+                                <th>Đánh giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GD005</td>
+                                <td>Pin 40 kWh</td>
+                                <td>Người bán</td>
+                                <td>140,000,000 VNĐ</td>
+                                <td>10/10/2025</td>
+                                <td><span class="badge bg-info">Chưa Đánh giá</span></td>
+                            </tr>
+                            <tr>
+                                <td>GD004</td>
+                                <td>Xe X-Panda (2023)</td>
+                                <td>Người mua</td>
+                                <td>650,000,000 VNĐ</td>
+                                <td>01/09/2025</td>
+                                <td><span class="badge bg-primary-custom">Đã Đánh giá</span></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+}

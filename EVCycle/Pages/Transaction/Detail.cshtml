@@ -1,0 +1,53 @@
+﻿@page "{id:int}"
+@model EVCycle.Pages.Transaction.DetailModel
+@{
+    ViewData["Title"] = $"Chi tiết Giao dịch #{Model.TransactionId}";
+}
+
+<h1 class="text-primary mb-4">@ViewData["Title"]</h1>
+
+<div class="card shadow-sm border-0 p-4">
+    <h4 class="text-secondary mb-3">Thông tin Chung</h4>
+    <div class="row mb-3">
+        <div class="col-md-6"><strong>Sản phẩm:</strong> VinFast VF e34 (2022)</div>
+        <div class="col-md-6"><strong>Mã GD:</strong> GD005</div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6"><strong>Ngày hoàn tất:</strong> 10/10/2025</div>
+        <div class="col-md-6"><strong>Tổng giá trị:</strong> <span class="text-success fw-bold">750,000,000 VNĐ</span></div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-6"><strong>Phí Hoa hồng:</strong> 2% (15,000,000 VNĐ)</div>
+        <div class="col-md-6"><strong>Trạng thái:</strong> <span class="badge bg-success">Hoàn thành</span></div>
+    </div>
+
+    <hr/>
+
+    <h4 class="text-secondary mb-3">Thông tin Bên liên quan</h4>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <p class="mb-1"><strong>Người Mua:</strong> Nguyễn Văn B</p>
+            <p class="mb-1 small text-secondary">Email: b@example.com</p>
+        </div>
+        <div class="col-md-6">
+            <p class="mb-1"><strong>Người Bán:</strong> Công ty Bán Xe X</p>
+            <p class="mb-1 small text-secondary">Đã được xác minh</p>
+        </div>
+    </div>
+
+    <hr/>
+
+    <h4 class="text-secondary mb-3">Đánh giá và Phản hồi</h4>
+    <div class="alert alert-info" role="alert">
+        <strong>Đánh giá của Người Mua:</strong> <span class="text-warning">★★★★☆</span> (4/5 sao)
+        <p class="mt-2 mb-0 small">Phản hồi: "Giao dịch nhanh chóng, xe đúng mô tả. Tuy nhiên, thủ tục hơi lâu."</p>
+    </div>
+    <div class="alert alert-light border" role="alert">
+        <strong>Đánh giá của Người Bán:</strong> <span class="text-warning">★★★★★</span> (5/5 sao)
+        <p class="mt-2 mb-0 small">Phản hồi: "Người mua thân thiện, thanh toán đúng hạn."</p>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-outline-primary-custom" type="button">In Hợp đồng</button>
+    </div>
+</div>
