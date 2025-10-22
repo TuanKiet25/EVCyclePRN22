@@ -58,7 +58,7 @@ namespace Infrastructure
             .AddCookie(options => // Thêm cấu hình cho Cookie Authentication
              {
                 // Đường dẫn đến trang đăng nhập của bạn
-                options.LoginPath = "/Login";
+                options.LoginPath = "/Auth/Login";
                 // Tên cookie phải khớp với tên bạn đã thiết lập
                 options.Cookie.Name = "AuthToken";
             })
