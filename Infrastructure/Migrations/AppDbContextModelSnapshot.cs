@@ -65,7 +65,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ListingId");
 
-                    b.ToTable("Battery");
+                    b.ToTable("Batteries");
                 });
 
             modelBuilder.Entity("Domain.Entities.BatteryCompatibility", b =>
@@ -95,7 +95,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("BatteryCompatibility");
+                    b.ToTable("BatteryCompatibilities");
                 });
 
             modelBuilder.Entity("Domain.Entities.Listing", b =>
@@ -141,7 +141,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Listing");
+                    b.ToTable("Listings");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -197,7 +197,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Domain.Entities.Vehicle", b =>
@@ -252,7 +252,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ListingId");
 
-                    b.ToTable("Vehicle");
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Battery", b =>
