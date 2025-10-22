@@ -1,0 +1,192 @@
+@page "/Auth/VerifyOtp"
+@namespace EVCycle.Pages.Auth
+@model EVCycle.Pages.Auth.VerifyOtpModel
+@{
+    ViewData["Title"] = "Xác thực OTP";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EVCycle</title>
+    <link rel="stylesheet" href="~/css/auth.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="auth-container">
+        <!-- Left Side - Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1 class="logo-text">EVCycle</h1>
+                </div>
+                
+                <h2 class="hero-title">Xác Thực Tài Khoản</h2>
+                <p class="hero-description">
+                    Chúng tôi đã gửi mã xác thực đến email của bạn. Vui lòng kiểm tra hộp thư và nhập mã để hoàn tất đăng ký.
+                </p>
+
+                <!-- Email Illustration -->
+                <div class="email-illustration">
+                    <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <polyline points="22,6 12,13 2,6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p class="email-text">Kiểm tra email của bạn</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - OTP Form Section -->
+        <div class="form-section">
+            <div class="form-wrapper">
+                <div class="form-container otp-container">
+                    <!-- Form Header -->
+                    <div class="form-header">
+                        <div class="otp-icon-wrapper">
+                            <svg class="otp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="form-title">Nhập Mã OTP</h3>
+                        <p class="form-subtitle">Mã xác thực đã được gửi đến <strong>@Model.Email</strong></p>
+                    </div>
+
+                    <!-- Error Message -->
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="error-message show">
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <line x1="12" y1="8" x2="12" y2="12" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>@Model.ErrorMessage</span>
+                        </div>
+                    }
+
+                    <!-- Success Message -->
+                    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+                    {
+                        <div class="success-message show">
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>@Model.SuccessMessage</span>
+                        </div>
+                    }
+
+                    <!-- OTP Form -->
+                    <form method="post" class="auth-form">
+                        <input type="hidden" name="Email" value="@Model.Email" />
+                        
+                        <div class="form-group">
+                            <label class="form-label">Mã OTP (6 chữ số)</label>
+                            <div class="otp-input-container">
+                                <input type="text" 
+                                       maxlength="1" 
+                                       class="otp-input" 
+                                       name="otp1" 
+                                       id="otp1"
+                                       required 
+                                       autocomplete="off"
+                                       onkeyup="moveToNext(this, 'otp2')"
+                                       onkeydown="moveToPrev(event, this, null)" />
+                                <input type="text" 
+                                       maxlength="1" 
+                                       class="otp-input" 
+                                       name="otp2" 
+                                       id="otp2"
+                                       required 
+                                       autocomplete="off"
+                                       onkeyup="moveToNext(this, 'otp3')"
+                                       onkeydown="moveToPrev(event, this, 'otp1')" />
+                                <input type="text" 
+                                       maxlength="1" 
+                                       class="otp-input" 
+                                       name="otp3" 
+                                       id="otp3"
+                                       required 
+                                       autocomplete="off"
+                                       onkeyup="moveToNext(this, 'otp4')"
+                                       onkeydown="moveToPrev(event, this, 'otp2')" />
+                                <input type="text" 
+                                       maxlength="1" 
+                                       class="otp-input" 
+                                       name="otp4" 
+                                       id="otp4"
+                                       required 
+                                       autocomplete="off"
+                                       onkeyup="moveToNext(this, 'otp5')"
+                                       onkeydown="moveToPrev(event, this, 'otp3')" />
+                                <input type="text" 
+                                       maxlength="1" 
+                                       class="otp-input" 
+                                       name="otp5" 
+                                       id="otp5"
+                                       required 
+                                       autocomplete="off"
+                                       onkeyup="moveToNext(this, 'otp6')"
+                                       onkeydown="moveToPrev(event, this, 'otp4')" />
+                                <input type="text" 
+                                       maxlength="1" 
+                                       class="otp-input" 
+                                       name="otp6" 
+                                       id="otp6"
+                                       required 
+                                       autocomplete="off"
+                                       onkeydown="moveToPrev(event, this, 'otp5')" />
+                            </div>
+                            <input type="hidden" name="Otp" id="otpValue" />
+                        </div>
+
+                        <div class="otp-timer">
+                            <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="12 6 12 12 16 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Mã sẽ hết hạn sau <strong id="timer">5:00</strong></span>
+                        </div>
+
+                        <button type="submit" class="submit-btn" onclick="combineOtp()">
+                            <span>Xác thực</span>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <polyline points="9 11 12 14 22 4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Footer Links -->
+                    <div class="form-footer-links">
+                        <p class="footer-text">Không nhận được mã?</p>
+                        <button type="button" class="footer-link" id="resendOtp">Gửi lại mã</button>
+                    </div>
+
+                    <div class="form-footer-links" style="margin-top: 0.5rem;">
+                        <a href="/Auth/Login" class="footer-link">← Quay lại đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/otp.js"></script>
+</body>
+</html>
+
