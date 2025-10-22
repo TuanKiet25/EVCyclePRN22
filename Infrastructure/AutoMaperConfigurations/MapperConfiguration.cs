@@ -1,4 +1,5 @@
 ﻿using Application.ViewModels.Requests;
+using Application.ViewModels.Responses;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -21,6 +22,8 @@ namespace Infrastructure.AutoMapperConfigurations
                .ForMember(dest => dest.IsVerified, opt => opt.Ignore())
                .ForMember(dest => dest.VerificationOtp, opt => opt.Ignore())
                .ForMember(dest => dest.OtpExpiryTime, opt => opt.Ignore());
+            CreateMap<BatteryRequest, Battery>().ReverseMap();
+            CreateMap<Battery, BatteryResponse>().ReverseMap();
         }
     }
 }
