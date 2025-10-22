@@ -1,0 +1,277 @@
+@page "/Auth/Login"
+@namespace EVCycle.Pages.Auth
+@model EVCycle.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EVCycle</title>
+    <link rel="stylesheet" href="~/css/auth.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <div class="auth-container">
+        <!-- Left Side - Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h1 class="logo-text">EVCycle</h1>
+                </div>
+                
+                <h2 class="hero-title">Thị trường Pin Xe Điện</h2>
+                <p class="hero-description">
+                    Nền tảng giao dịch pin xe điện hàng đầu
+                </p>
+
+                <!-- Battery Visualization -->
+                <div class="battery-visualization">
+                    <div class="battery-container">
+                        <div class="battery-level"></div>
+                        <div class="battery-icon">
+                            <div class="battery-tip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Form Section -->
+        <div class="form-section">
+            <div class="form-wrapper">
+                <div class="form-container">
+                    <!-- Form Header -->
+                    <div class="form-header">
+                        <h3 class="form-title" id="formTitle">Chào mừng</h3>
+                        <p class="form-subtitle" id="formSubtitle">Truy cập tài khoản của bạn</p>
+                    </div>
+
+                    <!-- Toggle Buttons -->
+                    <div class="auth-toggle">
+                        <div class="toggle-slider"></div>
+                        <button type="button" class="toggle-btn active" id="loginToggle">Đăng nhập</button>
+                        <button type="button" class="toggle-btn" id="signupToggle">Đăng ký</button>
+                    </div>
+
+                    <!-- Login Error Message -->
+                    @if (!string.IsNullOrEmpty(Model.LoginErrorMessage))
+                    {
+                        <div class="error-message show" id="loginError">
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <line x1="12" y1="8" x2="12" y2="12" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>@Model.LoginErrorMessage</span>
+                        </div>
+                    }
+
+                    <!-- Register Error Message -->
+                    @if (!string.IsNullOrEmpty(Model.RegisterErrorMessage))
+                    {
+                        <div class="error-message show" id="registerError" style="display: none;">
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <line x1="12" y1="8" x2="12" y2="12" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span>@Model.RegisterErrorMessage</span>
+                        </div>
+                    }
+
+                    <!-- Success Message -->
+                    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+                    {
+                        <div class="success-message show">
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>@Model.SuccessMessage</span>
+                        </div>
+                    }
+
+                    <!-- Login Form -->
+                    <form id="loginForm" method="post" class="auth-form">
+                        <input type="hidden" name="FormType" value="Login" />
+                        
+                        <div class="form-group">
+                            <label class="form-label">Email hoặc Tên đăng nhập</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="text" name="LoginRequest.Username" class="form-input" placeholder="Nhập email hoặc tên đăng nhập" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mật khẩu</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="password" name="LoginRequest.Password" class="form-input" placeholder="Nhập mật khẩu" required />
+                                <button type="button" class="password-toggle" onclick="togglePassword(this)">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="submit-btn">
+                            <span>Đăng nhập</span>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <line x1="5" y1="12" x2="19" y2="12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="12 5 19 12 12 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="registerForm" method="post" class="auth-form" style="display: none;">
+                        <input type="hidden" name="FormType" value="Register" />
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Tên</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <input type="text" name="RegisterRequest.FirstName" class="form-input" placeholder="Nhập tên" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Họ</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <input type="text" name="RegisterRequest.LastName" class="form-input" placeholder="Nhập họ" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tên đăng nhập</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="7" r="4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="text" name="RegisterRequest.Username" class="form-input" placeholder="Nhập tên đăng nhập" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="22,6 12,13 2,6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="email" name="RegisterRequest.Email" class="form-input" placeholder="Nhập email" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Số điện thoại</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="tel" name="RegisterRequest.PhoneNumber" class="form-input" placeholder="Nhập số điện thoại" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Địa chỉ</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="10" r="3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="text" name="RegisterRequest.Address" class="form-input" placeholder="Nhập địa chỉ" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Mật khẩu</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="password" name="RegisterRequest.Password" class="form-input" placeholder="Nhập mật khẩu" required />
+                                <button type="button" class="password-toggle" onclick="togglePassword(this)">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Nhập lại mật khẩu</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <input type="password" name="RegisterRequest.ConfirmPassword" class="form-input" placeholder="Nhập lại mật khẩu" required />
+                                <button type="button" class="password-toggle" onclick="togglePassword(this)">
+                                    <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>Đăng ký</span>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <line x1="5" y1="12" x2="19" y2="12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="12 5 19 12 12 19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </form>
+
+                    <!-- Footer Links -->
+                    <div class="form-footer-links">
+                        <p class="footer-text" id="footerText">Chưa có tài khoản?</p>
+                        <button type="button" class="footer-link" id="footerLink">Tạo tài khoản</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/auth.js"></script>
+</body>
+</html>
+

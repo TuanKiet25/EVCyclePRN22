@@ -64,8 +64,13 @@ namespace Application.Services
             user.Role = Role.User;
             user.IsVerified = false;
             user.VerificationOtp = otp;
-            user.OtpExpiryTime = DateTime.UtcNow.AddMinutes(5); 
+            user.OtpExpiryTime = DateTime.UtcNow.AddMinutes(5);
 
+            // Combine FirstName and LastName into FullName
+            if (!string.IsNullOrEmpty(request.FirstName) && !string.IsNullOrEmpty(request.LastName))
+            {
+                user.FullName = $"{request.FirstName} {request.LastName}";
+            }
 
             // 4. Lưu người dùng vào DB
             await _unitOfWork.userRepository.AddAsync(user);
