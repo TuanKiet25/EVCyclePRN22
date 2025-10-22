@@ -36,12 +36,16 @@ namespace Infrastructure
             #region Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IBatteryRepository, BatteryRepository>();
+            services.AddScoped<IListingRepository, ListingRepository>();
             #endregion
             // Đăng Ký Services 
             #region services
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IBatteryService, BatteryService>();
             #endregion 
             // Đăng ký auto mapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
